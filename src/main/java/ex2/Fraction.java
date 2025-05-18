@@ -4,25 +4,31 @@ public class Fraction {
     private int zaehler;
     private int nenner;
 
-    // icomplete
+
     public Fraction(int zaehler, int nenner) {
+        if (nenner == 0){
+            throw new IllegalArgumentException("Nenner darf nicht null sein.");
+        }
         this.zaehler = zaehler;
         this.nenner = nenner;
     }
 
-    // wrong
-    public void Kehrwert() {
-        this.setNenner(this.zaehler);
-        this.setZaehler(this.nenner);
+
+    public void Kehrwert(int zaehler, int nenner) {
+        if (zaehler == 0){
+            throw new IllegalArgumentException("Ausdruck undefiniert");
+        }
+        this.setNenner(zaehler);
+        this.setZaehler(nenner);
     }
 
-    // wrong
+
     public void multiplikation(Fraction a) {
-        this.setNenner(this.nenner * nenner);
-        this.setZaehler(this.zaehler * zaehler);
+        setNenner(this.nenner * a.nenner);
+       setZaehler(this.zaehler * a.zaehler);
     }
 
-    // wrong
+
     public void addition(Fraction a) {
         if (a.getNenner() != this.getNenner()) {
             int neuerZaehler;
@@ -30,6 +36,9 @@ public class Fraction {
 
             neuerZaehler = a.getZaehler() * this.getNenner();
             this.setZaehler(this.getZaehler() + neuerZaehler);
+
+
+            this.setNenner(this.getNenner()* a.getNenner());
         } else {
             this.setZaehler(this.getZaehler() + a.getZaehler());
         }
@@ -38,8 +47,8 @@ public class Fraction {
     // wrong
     public void kuerzen() {
         int ggt = ggt(Math.abs(zaehler), Math.abs(nenner));
-        this.zaehler *= ggt;
-        this.nenner *= ggt;
+        this.zaehler /= ggt;
+        this.nenner /= ggt;
     }
 
     // helper method Euklidian algorithm ,
